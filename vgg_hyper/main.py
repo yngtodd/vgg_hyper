@@ -4,8 +4,8 @@ import argparse
 import keras
 from keras.datasets import cifar10
 from keras.preprocessing.image import ImageDataGenerator
-#from model import VGG_16
-from vgg16 import VGG16
+from model import VGG_16
+#from vgg16 import VGG16
 import os
 
 from hyperspace import hyperdrive
@@ -32,8 +32,19 @@ x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
 
-# initiate RMSprop optimizer
-opt = keras.optimizers.rmsprop(lr=0.0001, decay=1e-6)
+
+    # Train the model
+    model.fit(x_train, y_train,
+              batch_size=128,
+              shuffle=True,
+              epochs=250,
+              validation_data=(x_test, y_test))
+
+    # Evaluate the model
+    scores = model.evaluate(x_test, y_test)
+
+    print('Loss: %.3f' % scores[0])
+    print('Accuracy: %.3f' % scores[1])
 
 def objective(params, final_iter=None):
     kernel1 = int(params[0])
@@ -49,9 +60,11 @@ def objective(params, final_iter=None):
     # dropout1 = params[10]
     # dropout2 = params[11]
 
-    #model = VGG_16(kernel1, kernel2)
-    model = VGG16()
-    model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
+    model = VGG_16(kernel1, kernel2)
+    #model = VGG16()
+    model.compile(optimizer=keras.optimizers.rmsprop(lr=0.0001, decay=1e-6),
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
 
     if not data_augmentation:
         print('Not using data augmentation.')

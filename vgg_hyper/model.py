@@ -54,14 +54,3 @@ def VGG_16(kernel1=3, kernel2=3, kernel3=3, kernel4=3, kernel5=3, kernel6=3,
     model.add(Dense(5000, activation='softmax'))
 
     return model
-
-
-def get_model_summary(model):
-    model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
-    return model.summary()
-
-
-opt = keras.optimizers.rmsprop(lr=0.0001, decay=1e-6)
-model = VGG_16()
-summary = get_model_summary(model)
-print(summary)
