@@ -7,6 +7,8 @@ from keras import backend as K
 import numpy as np
 import os
 
+from sklearn.model_selection import train_test_split
+
 
 def load_data(path='../data/cifar-10-batches-py/'):
     """
@@ -79,6 +81,17 @@ def load_batch(fpath, label_key='labels'):
     return data, labels
 
 
-(x_train, y_train), (x_test, y_test) = load_data()
-print("Data loaded.")
-print(x_train.shape)
+# (x_train, y_train), (x_test, y_test) = load_data()
+# print("Data loaded.")
+# print("x_train shape before splitting: {}\n".format(x_train.shape))
+#
+# x_train, y_train, x_val, y_val = train_test_split(x_train, y_train, test_size=x_test.shape[0],
+#                                                   shuffle=True, random_state=0)
+#
+# print("x_train shape after splitting: {}\n".format(x_train.shape))
+# print("y_train shape after splitting: {}\n".format(y_train.shape))
+# print("x_val shape after splitting: {}\n".format(x_val.shape))
+# print("y_val shape after splitting: {}\n".format(y_val.shape))
+#
+# print("x_test shape: {}\n".format(x_test.shape))
+# print("y_test shape: {}\n".format(y_test.shape))

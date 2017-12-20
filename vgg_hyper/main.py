@@ -10,12 +10,13 @@ from hyperspace import hyperdrive
 
 
 num_classes = 10
+batch_size = 32
 epochs = 5
 
 # The data, shuffled and split between train and test sets:
 (x_train, y_train), (x_test, y_test) = load_data()
 # Further split to create validation set
-x_train, y_train, x_val, y_val = train_test_split(x_train, y_train, test_size=x_test.shape[0],
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=x_test.shape[0],
                                                   shuffle=True, random_state=0)
 
 # Convert class vectors to binary class matrices.
@@ -43,14 +44,15 @@ def objective(params):
     """
     kernel1 = int(params[0])
     kernel2 = int(params[1])
-    kernel3 = int(params[2])
-    kernel4 = int(params[3])
-    kernel5 = int(params[4])
-    kernel6 = int(params[5])
-    batch_size = int(params[6])
+    # kernel3 = int(params[2])
+    # kernel4 = int(params[3])
+    # kernel5 = int(params[4])
+    # kernel6 = int(params[5])
+    # batch_size = int(params[6])
 
-    model = vgg16(kernel1=kernel1, kernel2=kernel2, kernel3=kernel3,
-                     kernel4=kernel4, kernel5=kernel5, kernel6=kernel6)
+    # model = vgg16(kernel1=kernel1, kernel2=kernel2, kernel3=kernel3,
+    #               kernel4=kernel4, kernel5=kernel5, kernel6=kernel6)
+    model = vgg16(kernel1=kernel1, kernel2=kernel2)
 
     model.compile(optimizer=keras.optimizers.rmsprop(lr=0.0001, decay=1e-6),
                   loss='categorical_crossentropy',

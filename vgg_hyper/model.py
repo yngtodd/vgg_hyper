@@ -5,8 +5,8 @@ from keras.layers.pooling import MaxPooling2D
 
 
 def vgg16(kernel1=3, kernel2=3, kernel3=3, kernel4=3, kernel5=3, kernel6=3,
-             kernel7=3, kernel8=3, kernel9=3, kernel10=3, dropout1=0.25,
-             dropout2=0.25, dropout3=0.25, dropout4=0.25, dropout5=0.25, dropout6=0.25):
+          kernel7=3, kernel8=3, kernel9=3, kernel10=3, dropout1=0.25,
+          dropout2=0.25, dropout3=0.25, dropout4=0.25, dropout5=0.25, dropout6=0.25):
     """
     VGG16.
 
